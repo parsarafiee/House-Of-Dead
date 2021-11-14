@@ -19,6 +19,7 @@ public class EnemyManager : MonoBehaviour
         rb = this.gameObject.GetComponent<Rigidbody>();
         animator.SetInteger("Int", 0);
         //animator = gameObject.GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
