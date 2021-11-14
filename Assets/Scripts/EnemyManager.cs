@@ -9,13 +9,16 @@ public class EnemyManager : MonoBehaviour
     public Animator animator;
     public float timeToWalk=0;
     public float speed;
-    Rigidbody rb;
 
+    bool isAlive = true;
+    Rigidbody rb;
+    HP hp;
     float time;
 
     // Start is called before the first frame update
     void Start()
     {
+        hp = GetComponent<HP>();
         rb = this.gameObject.GetComponent<Rigidbody>();
         animator.SetInteger("Int", 0);
         //animator = gameObject.GetComponent<Animator>();
@@ -27,13 +30,18 @@ public class EnemyManager : MonoBehaviour
     {
         
         time+= Time.deltaTime;
-        if (timeToWalk < time)
+        if (timeToWalk < time && isAlive)
         {
             animator.SetInteger("Int", 1);
             Vector3 pos = Vector3.MoveTowards(transform.position, player.position, speed*Time.deltaTime) ;
             rb.MovePosition(pos);
             transform.LookAt(player);
          }
+        if (hp.IsDeadBool ()&& isAlive)
+        {
+            isAlive = false;
+            animator.SetTrigger("dead");
+        }
 
 
 

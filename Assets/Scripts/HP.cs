@@ -6,6 +6,7 @@ public class HP : MonoBehaviour
 {
 
     public int hp;
+    public bool isDead;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +18,18 @@ public class HP : MonoBehaviour
     {
         if (hp<0)
         {
-            GameObject.Destroy(gameObject);
+            isDead = true;
         }
         
     }
     public  void  IsDead()
     {
         hp = -1;
+        isDead = true;
+    }
+    public bool IsDeadBool()
+    {
+        return isDead;
     }
     public void DecreaseHP()
     {

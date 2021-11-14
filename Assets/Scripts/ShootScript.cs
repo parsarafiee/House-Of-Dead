@@ -5,10 +5,12 @@ using UnityEngine;
 public class ShootScript : MonoBehaviour
 {
     public Camera cam;
+    Magazine magazine;
     Laser laser;
     // Start is called before the first frame update
     void Start()
     {
+        magazine = GetComponent<Magazine>();
         laser = GetComponent<Laser>();
     }
 
@@ -17,7 +19,7 @@ public class ShootScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
+            magazine.DecreasBullet()
             Ray r = cam.ScreenPointToRay(Input.mousePosition);
 
            
