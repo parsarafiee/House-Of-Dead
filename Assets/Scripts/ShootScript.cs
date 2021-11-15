@@ -19,7 +19,8 @@ public class ShootScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            magazine.DecreasBullet()
+            Debug.Log(magazine.NumberOfBulletsLeft());
+            magazine.DecreasBullet();
             Ray r = cam.ScreenPointToRay(Input.mousePosition);
 
            
