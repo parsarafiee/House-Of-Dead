@@ -8,12 +8,26 @@ public class PlayerHP : MonoBehaviour
     public Transform hpPanel;
     public GameObject heart;
     public int numberOfHeart = 5;
+    GameManager gameManager;
+    bool isAlive;
 
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         heartsList = new List<GameObject>();
         RechargeHP();
+    }
+    private void Update()
+    {
+        int numberOfHeartLeft = NumberOfBulletsLeft();
+        if (numberOfHeartLeft==0)
+        {
+            gameManager.GameIsDone();
+
+        }
+
+
     }
     public void RechargeHP()
     {
@@ -24,6 +38,9 @@ public class PlayerHP : MonoBehaviour
             heartsList.Add(bul);
         }
     }
+    
+
+
 
     public void DecreasHp()
     {

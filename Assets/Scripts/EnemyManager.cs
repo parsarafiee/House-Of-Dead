@@ -10,9 +10,11 @@ public class EnemyManager : MonoBehaviour
     public float timeToWalk = 0;
     public float speed;
     public float distanceToAttack;
+    public float AnimationTimeToAttack = 2.63f;
 
-    float timerToChargezambi = 0;
-    bool zambiAttackCharged = true;
+
+    float timerToChargezambi ;
+    bool zambiAttackCharged = false;
     float distanceFromPlayer;
     bool isAlive = true;
     Rigidbody rb;
@@ -24,6 +26,7 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timerToChargezambi = AnimationTimeToAttack;
         hp = GetComponent<HP>();
         zambiDmage = GetComponent<DealDmage>();
         rb = this.gameObject.GetComponent<Rigidbody>();
@@ -47,26 +50,23 @@ public class EnemyManager : MonoBehaviour
             transform.LookAt(player);
             Debug.Log(distanceFromPlayer);
         }
-        if (distanceFromPlayer < distanceToAttack)
+        if (distanceFromPlayer < distanceToAttack && !isRichedPlayer)
         {
             animator.SetTrigger("attack");
             isRichedPlayer = true;
-            if (zambiAttackCharged)
-            {
-                zambiDmage.DealDmageToObject(player.gameObject);
-                zambiAttackCharged = false;
+            zambiAttackCharged = true;
 
-            }
 
         }
-        if (!zambiAttackCharged)
+        if (zambiAttackCharged && isAlive)
         {
-            timerToChargezambi += Time.deltaTime;
-            Debug.Log(timerToChargezambi);
-            if (timerToChargezambi > 1)
+               timerToChargezambi += Time.deltaTime;
+           //ebug.Log(timerToChargezambi);
+            if (timerToChargezambi > AnimationTimeToAttack)
             {
-                zambiAttackCharged = true;
+                zambiDmage.DealDmageToObject(player.gameObject);
                 timerToChargezambi = 0;
+
             }
         }
 
