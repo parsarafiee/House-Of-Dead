@@ -525,7 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpPanel: {fileID: 2023863989}
   heart: {fileID: 3010015637696536575, guid: c8b93ef3acc704a4b983b6fc5855fda9, type: 3}
-  numberOfHeart: 5
+  numberOfHeart: 1
 --- !u!1 &697213085
 GameObject:
   m_ObjectHideFlags: 0

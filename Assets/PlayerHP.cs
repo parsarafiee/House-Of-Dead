@@ -23,12 +23,13 @@ public class PlayerHP : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(this.gameObject.transform.rotation);
         int numberOfHeartLeft = NumberOfBulletsLeft();
         if (numberOfHeartLeft<1 )
         {
             timeToFall += Time.deltaTime;
             //gameManager.GameIsDone();
-            this.gameObject.transform.rotation = new Quaternion(Mathf.Lerp( 0,-90, timeToFall / 10), 0, 0,0);
+            this.gameObject.transform.rotation = new Quaternion(Mathf.Lerp( 0,-0.7f, timeToFall/10f), 0, 0,0);
             
         }
 

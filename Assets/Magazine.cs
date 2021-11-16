@@ -37,9 +37,5 @@ public class Magazine : MonoBehaviour
     {
         return magazine.Count;
     }
-   
-    void Update()
-    {
-        
-    }
+
 }
