@@ -8,9 +8,12 @@ public class PlayerHP : MonoBehaviour
     public Transform hpPanel;
     public GameObject heart;
     public int numberOfHeart = 5;
+     float timeToFall=0;
     GameManager gameManager;
     bool isAlive;
 
+
+    
 
     void Start()
     {
@@ -21,10 +24,12 @@ public class PlayerHP : MonoBehaviour
     private void Update()
     {
         int numberOfHeartLeft = NumberOfBulletsLeft();
-        if (numberOfHeartLeft==0)
+        if (numberOfHeartLeft<1 )
         {
-            gameManager.GameIsDone();
-
+            timeToFall += Time.deltaTime;
+            //gameManager.GameIsDone();
+            this.gameObject.transform.rotation = new Quaternion(Mathf.Lerp( 0,-90, timeToFall / 10), 0, 0,0);
+            
         }
 
 
@@ -34,8 +39,8 @@ public class PlayerHP : MonoBehaviour
         heartsList.Clear();
         for (int i = 0; i < numberOfHeart; i++)
         {
-            GameObject bul = GameObject.Instantiate(heart, hpPanel.transform);
-            heartsList.Add(bul);
+            GameObject playerHeart = GameObject.Instantiate(heart, hpPanel.transform);
+            heartsList.Add(playerHeart);
         }
     }
     
